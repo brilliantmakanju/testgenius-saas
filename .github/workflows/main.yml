@@ -1,0 +1,22 @@
+name: Retrieve Environment Variable
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  retrieve-env:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Retrieve the environment variable
+      - name: Access Environment Variable
+        env:
+          MY_ENV_VARIABLE: ${{ secrets.MY_ENV_VARIABLE }} # Replace with your secret's name
+        run: |
+          echo "The environment variable value is: $MY_ENV_VARIABLE"
