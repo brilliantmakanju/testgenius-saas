@@ -1,4 +1,4 @@
-name: Testingss MY_ENV_VARIABLE
+name: Cookins is MY_ENV_VARIABLE
 
 on:
   workflow_dispatch: # You can manually trigger the workflow
