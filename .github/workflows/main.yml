@@ -1,22 +1,19 @@
-name: Retrieve Environment Variable
+name: Test MY_ENV_VARIABLE
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  retrieve-env:
+  test-environment-variable:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      # Step 2: Retrieve the environment variable
-      - name: Access Environment Variable
+      - name: Debug Environment Variable
         env:
-          MY_ENV_VARIABLE: ${{ secrets.MY_ENV_VARIABLE }} # Replace with your secret's name
+          MY_ENV_VARIABLE: ${{ secrets.MY_ENV_VARIABLE }}
         run: |
-          echo "The environment variable value is: $MY_ENV_VARIABLE"
+          if [ -z "$MY_ENV_VARIABLE" ]; then
+            echo "MY_ENV_VARIABLE is empty or not set."
+          else
+            echo "MY_ENV_VARIABLE is set to: $MY_ENV_VARIABLE"
+          fi
