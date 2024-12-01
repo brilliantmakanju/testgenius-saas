@@ -1,4 +1,4 @@
-name: Testings MY_ENV_VARIABLE
+name: Testingss MY_ENV_VARIABLE
 
 on:
   workflow_dispatch: # You can manually trigger the workflow
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print the environment variable
+      - name: Printssas the environment variable
         env:
           MY_ENV_VARIABLE: ${{ secrets.MY_ENV_VARIABLE }}  # Access secret here
         run: |
