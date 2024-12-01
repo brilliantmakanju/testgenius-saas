@@ -1,19 +1,22 @@
 name: Test MY_ENV_VARIABLE
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # You can manually trigger the workflow
 
 jobs:
   test-environment-variable:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Debug Environment Variable
+      - name: Print the environment variable
         env:
-          MY_ENV_VARIABLE: ${{ secrets.MY_ENV_VARIABLE }}
+          MY_ENV_VARIABLE: ${{ secrets.MY_ENV_VARIABLE }}  # Access secret here
         run: |
+          echo "MY_ENV_VARIABLE is set to: $MY_ENV_VARIABLE"
+          
+          # Check if the variable is empty or not
           if [ -z "$MY_ENV_VARIABLE" ]; then
             echo "MY_ENV_VARIABLE is empty or not set."
           else
-            echo "MY_ENV_VARIABLE is set to: $MY_ENV_VARIABLE"
+            echo "MY_ENV_VARIABLE is set."
           fi
