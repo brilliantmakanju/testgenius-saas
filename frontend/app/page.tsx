@@ -37,6 +37,19 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const featuresRef = useRef<HTMLDivElement>(null)
 
+  const userName = process.env.NEXT_PUBLIC_USER_NAME || 'User';
+  const env = process.env.NEXT_PUBLIC_ENV || 'development';
+
+  if (!process.env.NEXT_PUBLIC_USER_NAME || !process.env.NEXT_PUBLIC_ENV) {
+      console.error('Environment variables are not set correctly.');
+      return <p>Error: Missing environment variables</p>;
+  }
+
+  console.log('Environment Variables:', {
+      NEXT_PUBLIC_USER_NAME: userName,
+      NEXT_PUBLIC_ENV: env,
+  });
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
