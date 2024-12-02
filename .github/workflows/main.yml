@@ -20,3 +20,36 @@ jobs:
           else
             echo "MY_ENV_VARIABLE is set. to me." $MY_ENV_VARIABLE
           fi
+
+  test-next:
+      runs-on: ubuntu-latest
+      
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+  
+        - name: Set up Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: 16
+  
+        - name: Install dependencies for Next.js app
+          working-directory: frontend
+          run: npm install
+  
+        - name: Log environment variables for Next.js app
+          run: |
+            echo "NEXT_PUBLIC_USER_NAME=${{ secrets.NEXT_PUBLIC_USER_NAME }}"
+            echo "NEXT_PUBLIC_ENV=${{ secrets.NEXT_PUBLIC_ENV }}"
+  
+        - name: Build and Run Next.js app
+          working-directory: frontend
+          env:
+            NEXT_PUBLIC_USER_NAME: ${{ secrets.NEXT_PUBLIC_USER_NAME }}
+            NEXT_PUBLIC_ENV: ${{ secrets.NEXT_PUBLIC_ENV }}
+          run: npm run build && npm start
+
+
+
+
+  
